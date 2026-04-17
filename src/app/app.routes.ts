@@ -1,23 +1,42 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { Login } from './login/login';
-import { Dashboard } from './dashboard/dashboard';
-import { CustomerDetails } from './customer-details/customer-details';
-import { Transactions } from './transactions/transactions';
-import { CreateTransaction } from './create-transaction/create-transaction';
+import { AuthGuard } from './guards/auth-guard';
+import { loginGuard } from './guards/login-guard';
 
 export const routes: Routes = [
+  {
+    path: 'login',
+    loadComponent: () => import('./login/login').then((m) => m.Login),
+    canActivate: [loginGuard],
+  },
+  {
+    path: 'dashboard',
+    loadComponent: () => import('./dashboard/dashboard').then((m) => m.Dashboard),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'customer/:id',
+    loadComponent: () =>
+      import('./customer-details/customer-details').then((m) => m.CustomerDetails),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'transactions',
+    loadComponent: () => import('./transactions/transactions').then((m) => m.Transactions),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'transactions/new',
+    loadComponent: () =>
+      import('./create-transaction/create-transaction').then((m) => m.CreateTransaction),
+    canActivate: [AuthGuard],
+  },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'login', component: Login },
-  { path: 'dashboard', component: Dashboard },
-  { path: 'customer/:id', component: CustomerDetails },
-  { path: 'transactions', component: Transactions },
-  { path: 'transactions/new', component: CreateTransaction },
   { path: '**', redirectTo: '/login' },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

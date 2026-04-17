@@ -1,1 +1,21 @@
-<p>login works!</p>
+<div class="body-wrapper">
+  <div class="login-container">
+    <div class="login-card">
+      <h2>Welcome Back</h2>
+      <form [formGroup]="loginForm" (submit)="onSubmit($event)">
+        @for (formItem of loginFormItems; track $index) {
+          <app-form-input
+            [formControlName]="formItem.formControlName"
+            [id]="formItem.id"
+            [label]="formItem.label"
+            [inputType]="formItem.inputType"
+            [placeholder]="formItem.placeholder"
+            [validationMessage]="formItem.validationMessage"
+          ></app-form-input>
+        }
+
+        <button type="submit" class="btn-primary">Login</button>
+      </form>
+    </div>
+  </div>
+</div>
