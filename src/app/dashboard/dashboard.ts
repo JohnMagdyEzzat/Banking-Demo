@@ -22,6 +22,7 @@ export class Dashboard implements OnInit {
   userEmail = '';
   dashboardTableHeaders = ['CIF', 'name', 'segment', 'email'];
   selectedCustomer?: ICustomer;
+  isLoggedIn = this.authService.isLoggedIn();
 
   ngOnInit(): void {
     this.userEmail = this.authService.getToken() || '';

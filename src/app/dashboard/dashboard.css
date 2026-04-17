@@ -2,7 +2,6 @@
   background: #f4f6f9;
   color: #333;
   line-height: 1.6;
-  padding: 20px;
   height: 100vh;
 }
 
@@ -13,7 +12,6 @@
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  margin-top: 2rem;
 }
 
 .header {
@@ -27,21 +25,6 @@
 
 .header h1 {
   font-size: 1.5rem;
-}
-
-.add-btn {
-  background: #fff;
-  color: #2d89ef;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background 0.3s;
-}
-
-.add-btn:hover {
-  background: #e6e6e6;
 }
 
 .customer-list {

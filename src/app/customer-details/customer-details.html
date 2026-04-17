@@ -1,27 +1,29 @@
-<div class="customer-details">
-  <header class="header">
-    <h1>Customer Details</h1>
-    <button class="back-btn" (click)="goBack()">← Back</button>
-  </header>
+<div class="customer-details-container">
+  <div class="customer-details">
+    <header class="header">
+      <h1>Customer Details</h1>
+      <button class="back-btn" (click)="goBack()">← Back</button>
+    </header>
 
-  <section class="info-card">
-    <h2>Information</h2>
-    <div class="info-grid">
-      @for (customer of customerData$ | async | keyvalue; track $index) {
-        <div>
-          <strong>{{ customer.key | capitalize }}:</strong> {{ customer.value }}
-        </div>
-      }
-    </div>
-  </section>
+    <section class="info-card">
+      <h2>Information</h2>
+      <div class="info-grid">
+        @for (customer of customerData$ | async | keyvalue; track $index) {
+          <div>
+            <strong>{{ customer.key | capitalize }}:</strong> {{ customer.value }}
+          </div>
+        }
+      </div>
+    </section>
 
-  <section class="accounts-card">
-    <h2>Accounts</h2>
-    <app-table
-      [data]="(accountsData$ | async) || []"
-      [headers]="accountsTableHeaders"
-      [customeHeaders]="accountsTableCustomeHeaders"
-      [hasAction]="false"
-    ></app-table>
-  </section>
+    <section class="accounts-card">
+      <h2>Accounts</h2>
+      <app-table
+        [data]="(accountsData$ | async) || []"
+        [headers]="accountsTableHeaders"
+        [customeHeaders]="accountsTableCustomeHeaders"
+        [hasAction]="false"
+      ></app-table>
+    </section>
+  </div>
 </div>

@@ -1,3 +1,8 @@
+.customer-details-container {
+  background: #f4f6f9;
+  height: 100vh;
+}
+
 .customer-details {
   max-width: 1000px;
   margin: auto;
