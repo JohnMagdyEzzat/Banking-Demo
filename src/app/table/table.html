@@ -1,0 +1,23 @@
+<table>
+  <thead>
+    <tr>
+      @for (header of headers(); track $index) {
+        <th>{{ header | capitalize }}</th>
+      }
+
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (item of data(); track $index) {
+      <tr>
+        @for (key of headers(); track $index) {
+          <td>{{ item[key] }}</td>
+        }
+        <td>
+          <button class="action-btn edit" (click)="onViewDetails(item)">View Details</button>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>

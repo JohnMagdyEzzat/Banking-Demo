@@ -1,0 +1,42 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background: #f0f2f5;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 12px 15px;
+}
+
+tbody tr {
+  border-bottom: 1px solid #ddd;
+  transition: background 0.2s;
+}
+
+tbody tr:hover {
+  background: #f9fafc;
+}
+
+.action-btn {
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 5px;
+  font-size: 0.85rem;
+  transition: background 0.3s;
+}
+
+.action-btn.edit {
+  background: #2d89ef;
+  color: #fff;
+}
+
+.action-btn.edit:hover {
+  background: #1a5fb4;
+}

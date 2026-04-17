@@ -1,5 +1,5 @@
 <div class="form-group">
-  <label [for]="id()">{{ capitalizedLabel() }}</label>
+  <label [for]="id()">{{ label() | capitalize }}</label>
   <input
     [id]="id()"
     [type]="inputType()"
