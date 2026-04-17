@@ -1,0 +1,15 @@
+<div class="form-group">
+  <label [for]="id()">{{ label() | capitalize }}</label>
+  <input
+    [id]="id()"
+    [type]="inputType()"
+    [placeholder]="placeholder()"
+    [value]="value"
+    (input)="onInput($event)"
+    (blur)="onTouched()"
+    [ngClass]="{ 'invalid-input': validationMessage() }"
+  />
+  <div class="text-error">
+    <small>{{ validationMessage() }}</small>
+  </div>
+</div>

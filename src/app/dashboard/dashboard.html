@@ -1,0 +1,18 @@
+@if (isLoggedIn) {
+  <div class="dashboard-container">
+    <div class="dashboard">
+      <header class="header">
+        <h1>Customer Dashboard</h1>
+      </header>
+
+      <section class="customer-list">
+        <app-table
+          [data]="(customersData$ | async) || []"
+          [headers]="dashboardTableHeaders"
+          [hasAction]="true"
+          (viewDetails)="onViewDetails($event)"
+        ></app-table>
+      </section>
+    </div>
+  </div>
+}

@@ -1,0 +1,42 @@
+<table>
+  <thead>
+    <tr>
+      @if (customeHeaders() && customeHeaders()!.length > 0) {
+        @for (header of customeHeaders(); track $index) {
+          <th>{{ header | capitalize }}</th>
+        }
+      } @else {
+        @for (header of headers(); track $index) {
+          <th>{{ header | capitalize }}</th>
+        }
+      }
+      @if (hasAction()) {
+        <th>Actions</th>
+      }
+    </tr>
+  </thead>
+  <tbody>
+    @for (item of data(); track $index) {
+      <tr>
+        @for (key of headers(); track $index) {
+          @if (key === 'balance') {
+            <td>{{ item[key] | currency: item['currency'] }}</td>
+          } @else if (key === 'status') {
+            <td>
+              <span class="status" [ngClass]="item[key].toLowerCase()">
+                {{ item[key] }}
+              </span>
+            </td>
+          } @else {
+            <td>{{ item[key] }}</td>
+          }
+        }
+        @if (hasAction()) {
+          <td>
+            <button class="action-btn edit" (click)="onViewDetails(item)">View Details</button>
+          </td>
+        }
+      </tr>
+    }
+  </tbody>
+</table>
