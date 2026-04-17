@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { AuthService } from '../common/services/auth-service';
-import { CustomerService } from '../services/customer-service';
+import { CustomerService } from '../services/customer/customer-service';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { ICustomer } from '../interfaces/customerInterface';

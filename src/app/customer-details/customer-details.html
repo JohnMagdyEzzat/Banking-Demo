@@ -1,1 +1,49 @@
-<p>customer-details works!</p>
+<div class="customer-details">
+  <header class="header">
+    <h1>Customer Details</h1>
+    <button class="back-btn" (click)="goBack()">← Back</button>
+  </header>
+
+  <!-- Customer Information -->
+  <section class="info-card">
+    <h2>Information</h2>
+    <div class="info-grid">
+      @for (customer of customerData$ | async | keyvalue; track $index) {
+        <div>
+          <strong>{{ customer.key | capitalize }}:</strong> {{ customer.value }}
+        </div>
+      }
+    </div>
+  </section>
+
+  <!-- Accounts List -->
+  <section class="accounts-card">
+    <h2>Accounts</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Account Number</th>
+          <th>Type</th>
+          <th>Balance</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (account of accountData$ | async; track $index) {
+          <tr>
+            <td>{{ account.id }}</td>
+            <td>{{ account.type }}</td>
+            <td>
+              {{ account.balance | currency: account.currency }}
+            </td>
+            <td>
+              <span class="status" [ngClass]="account.status.toLowerCase()">
+                {{ account.status }}
+              </span>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </section>
+</div>
