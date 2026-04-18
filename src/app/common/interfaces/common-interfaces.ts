@@ -15,3 +15,8 @@ export interface IFilterItems {
   categoryFilter?: string;
   sortBy?: string;
 }
+
+export interface IFormValidations {
+  message: string;
+  formControlName: string;
+}

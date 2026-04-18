@@ -1,11 +1,13 @@
 <div class="transactions-body">
   <div class="transactions-container">
     <div class="transaction-container-header">
-      <h2>Transactions for Account {{ accountID }}</h2>
+      <h2>Transactions for Account {{ accountNumber }}</h2>
       <button class="back-btn" (click)="goBack()">← Back</button>
     </div>
 
-    <button class="btn btn-primary">Create new transaction</button>
+    <button class="btn btn-primary" (click)="onCreateNewTransaction()">
+      Create new transaction
+    </button>
 
     <app-filters (filterChange)="onFilterChange($event)" (sort)="onSort($event)"></app-filters>
 

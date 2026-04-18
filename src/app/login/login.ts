@@ -2,10 +2,11 @@ import { Component, inject } from '@angular/core';
 import { FormInput } from '../common/components/form-input/form-input';
 import { AppRoutingModule } from '../app.routes';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IFormItem } from '../common/interfaces/common-interfaces';
+import { IFormItem, IFormValidations } from '../common/interfaces/common-interfaces';
 import { Router } from '@angular/router';
 import { FormService } from '../common/services/form-service';
 import { AuthService } from '../common/services/auth-service';
+import { getFormValidationMessage } from '../common/functions/validation-functions';
 
 @Component({
   selector: 'app-login',
@@ -33,6 +34,8 @@ export class Login {
     },
   ];
 
+  formValidations: IFormValidations[] = [];
+
   private fb = inject(FormBuilder);
   private router = inject(Router);
   private formService = inject(FormService);
@@ -53,11 +56,16 @@ export class Login {
       this.authService.login(this.loginForm.value.email as string);
       this.loginForm.reset();
     } else {
+      const loginFormControlNames = Object.keys(this.loginForm.value);
       this.loginForm.markAllAsTouched();
-      this.loginFormItems = this.formService.getFormItemsvalidationMessages(
+      this.formValidations = this.formService.getFormItemsvalidationMessages(
         this.loginForm,
-        this.loginFormItems,
+        loginFormControlNames,
       );
     }
+  }
+
+  getFormValidationMessage(formControlName: string) {
+    return getFormValidationMessage(this.formValidations, formControlName);
   }
 }

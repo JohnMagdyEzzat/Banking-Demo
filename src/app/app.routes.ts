@@ -21,15 +21,19 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'transactions/:id',
-    loadComponent: () => import('./transactions/transactions').then((m) => m.Transactions),
+    path: 'transactions',
     canActivate: [AuthGuard],
-  },
-  {
-    path: 'transactions/new',
-    loadComponent: () =>
-      import('./create-transaction/create-transaction').then((m) => m.CreateTransaction),
-    canActivate: [AuthGuard],
+    children: [
+      {
+        path: ':id',
+        loadComponent: () => import('./transactions/transactions').then((m) => m.Transactions),
+      },
+      {
+        path: ':id/new',
+        loadComponent: () =>
+          import('./create-transaction/create-transaction').then((m) => m.CreateTransaction),
+      },
+    ],
   },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', redirectTo: '/login' },

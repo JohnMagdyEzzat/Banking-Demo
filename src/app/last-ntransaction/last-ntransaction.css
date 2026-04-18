@@ -1,0 +1,133 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s ease;
+  z-index: 1000;
+  padding: 1rem; /* spacing for small screens */
+}
+
+.modal-box {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  width: 400px;
+  max-width: 100%;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  animation: slideUp 0.3s ease;
+}
+
+.modal-title {
+  margin-top: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.modal-label {
+  display: block;
+  margin: 12px 0 6px;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.modal-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+.modal-input:focus {
+  border-color: #0078d7; /* same blue */
+  outline: none;
+}
+
+.modal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.btn-primary {
+  background: #0078d7; /* same blue */
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+  flex: 1;
+  min-width: 120px;
+}
+
+.btn-primary:hover {
+  background: #005fa3; /* darker blue */
+}
+
+.btn-secondary {
+  background: #f3f3f3; /* same gray */
+  color: #333;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+  flex: 1;
+  min-width: 120px;
+}
+
+.btn-secondary:hover {
+  background: #e0e0e0;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  .modal-box {
+    width: 100%;
+    padding: 16px;
+    border-radius: 8px;
+  }
+
+  .modal-title {
+    font-size: 1.1rem;
+  }
+
+  .modal-input {
+    font-size: 0.95rem;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
+}

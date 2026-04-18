@@ -1,0 +1,26 @@
+<!-- Trigger button -->
+<button class="btn-primary" (click)="openModal()">View Last N Transactions</button>
+
+<!-- Modal -->
+@if (isModalOpen()) {
+  <div class="modal-overlay" (click)="closeModal()">
+    <div class="modal-box" (click)="$event.stopPropagation()">
+      <h2 class="modal-title">Last N Transactions</h2>
+
+      <label for="transactionCount" class="modal-label">Enter number of transactions:</label>
+      <input
+        id="transactionCount"
+        type="number"
+        min="1"
+        max="100"
+        [(ngModel)]="transactionCount"
+        class="modal-input"
+      />
+
+      <div class="modal-actions">
+        <button class="btn-secondary" (click)="closeModal()">Cancel</button>
+        <button class="btn-primary" (click)="fetchTransactions()">Submit</button>
+      </div>
+    </div>
+  </div>
+}

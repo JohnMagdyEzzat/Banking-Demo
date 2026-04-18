@@ -9,7 +9,7 @@
         <app-table
           [data]="(customersData$ | async) || []"
           [headers]="dashboardTableHeaders"
-          [hasAction]="true"
+          [actions]="dashboardActions"
           (action)="onViewDetails($event)"
         ></app-table>
       </section>

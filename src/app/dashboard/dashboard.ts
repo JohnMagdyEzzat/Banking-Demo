@@ -24,13 +24,16 @@ export class Dashboard implements OnInit {
   selectedCustomer?: ICustomer;
   isLoggedIn = this.authService.isLoggedIn();
 
+  dashboardActions = ['View Details'];
+
   ngOnInit(): void {
     this.userEmail = this.authService.getToken() || '';
     this.customersData$ = this.customerService.getCustomers();
   }
 
-  onViewDetails(customer: ICustomer) {
-    this.selectedCustomer = customer;
-    this.router.navigate([`/customer/${customer.CIF}`]);
+  onViewDetails(event: { item: ICustomer }) {
+    // View Details action
+    this.selectedCustomer = event.item;
+    this.router.navigate([`/customer/${event.item.CIF}`]);
   }
 }

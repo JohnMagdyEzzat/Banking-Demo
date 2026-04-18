@@ -1,1 +1,88 @@
-<p>create-transaction works!</p>
+<div class="form-container">
+  <form
+    class="transaction-form"
+    [formGroup]="newTransactionForm"
+    (submit)="onSubmitNewTransaction()"
+  >
+    <!-- Transaction Type -->
+    <div class="form-group">
+      <label for="type">Transaction Type</label>
+      <select
+        id="type"
+        name="type"
+        formControlName="type"
+        [ngClass]="{ 'invalid-input': getFormValidationMessage('type') }"
+      >
+        <option value="" disabled selected>Select type</option>
+        @for (type of typesArray; track $index) {
+          <option [value]="type.code">{{ type.label }}</option>
+        }
+      </select>
+      <div class="text-error">
+        <small>{{ getFormValidationMessage('type') }}</small>
+      </div>
+    </div>
+
+    <!-- Amount -->
+    <div class="form-group">
+      <app-form-input
+        [id]="'amount'"
+        [label]="'amount'"
+        [inputType]="'number'"
+        [placeholder]="''"
+        [validationMessage]="getFormValidationMessage('amount')"
+        formControlName="amount"
+      ></app-form-input>
+    </div>
+
+    <!-- Date -->
+    <div class="form-group">
+      <app-form-input
+        [id]="'date'"
+        [label]="'date'"
+        [inputType]="'date'"
+        [placeholder]="''"
+        [validationMessage]="getFormValidationMessage('date')"
+        formControlName="date"
+      ></app-form-input>
+    </div>
+
+    <!-- Merchant -->
+    <div class="form-group">
+      <app-form-input
+        [id]="'merchant'"
+        [label]="'merchant'"
+        [inputType]="'text'"
+        [placeholder]="''"
+        [validationMessage]="getFormValidationMessage('merchant')"
+        formControlName="merchant"
+      ></app-form-input>
+    </div>
+
+    <!-- Category -->
+    <div class="form-group">
+      <label for="category">Category</label>
+
+      <select
+        id="category"
+        name="category"
+        formControlName="category"
+        [ngClass]="{ 'invalid-input': getFormValidationMessage('category') }"
+      >
+        <option value="" disabled selected>Select category</option>
+        @for (category of categories; track $index) {
+          <option [value]="category">{{ category }}</option>
+        }
+      </select>
+      <div class="text-error">
+        <small>{{ getFormValidationMessage('category') }}</small>
+      </div>
+    </div>
+
+    <!-- Submit -->
+    <div class="button-group">
+      <button type="submit" class="btn btn-submit">Save Transaction</button>
+      <button type="button" class="btn btn-back" (click)="goBack()">Back</button>
+    </div>
+  </form>
+</div>
