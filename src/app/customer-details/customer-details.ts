@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { ICustomer } from '../interfaces/customerInterface';
 import { CustomerService } from '../services/customer/customer-service';
@@ -20,6 +20,7 @@ export class CustomerDetails implements OnInit {
   accountService = inject(AccountService);
   route = inject(ActivatedRoute);
   router = inject(Router);
+  location = inject(Location);
 
   customerData$: Observable<ICustomer | undefined> | undefined;
   accountsData$: Observable<IAccount[] | undefined> | undefined;
@@ -34,6 +35,10 @@ export class CustomerDetails implements OnInit {
   }
 
   goBack() {
-    this.router.navigate(['/dashboard']);
+    this.location.back();
+  }
+
+  onViewTransactions(selectedAccount: IAccount) {
+    this.router.navigate([`/transactions/${selectedAccount.id}`]);
   }
 }

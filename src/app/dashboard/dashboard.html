@@ -10,7 +10,7 @@
           [data]="(customersData$ | async) || []"
           [headers]="dashboardTableHeaders"
           [hasAction]="true"
-          (viewDetails)="onViewDetails($event)"
+          (action)="onViewDetails($event)"
         ></app-table>
       </section>
     </div>

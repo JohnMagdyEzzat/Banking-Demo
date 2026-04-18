@@ -1,0 +1,44 @@
+<div class="filters">
+  <form class="filters-form" [formGroup]="filterFormGroup">
+    <label>
+      <span class="center">Date From</span>
+      <input type="date" id="dateFrom" formControlName="dateFrom" />
+    </label>
+    <label>
+      <span class="center">Date To</span>
+      <input type="date" id="dateTo" formControlName="dateTo" />
+    </label>
+    <label>
+      <span class="center">Type</span>
+      <select id="typeFilter" formControlName="type">
+        <option value="">All</option>
+        @for (type of typesArray; track $index) {
+          <option [value]="type.code">{{ type.label }}</option>
+        }
+      </select>
+    </label>
+    <label>
+      <span class="center">Category</span>
+      <select id="categoryFilter" formControlName="category">
+        <option value="">All</option>
+        @for (category of categories; track $index) {
+          <option [value]="category">{{ category }}</option>
+        }
+      </select>
+    </label>
+    <label [formGroup]="sortFormGroup">
+      <span class="center">Sort By</span>
+      <select id="sortBy" formControlName="sortBy" (change)="onSortBy()">
+        <option value="date" selected>Date</option>
+        <option value="amount">Amount</option>
+      </select>
+    </label>
+  </form>
+
+  <div class="btn-container">
+    <button type="button" class="btn btn-primary" (click)="onApplyFilters()">Apply</button>
+    <button type="button" class="btn btn-danger" (click)="resetForm(); onApplyFilters()">
+      Clear
+    </button>
+  </div>
+</div>

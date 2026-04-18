@@ -13,9 +13,10 @@ export class Table {
   customeHeaders = input<string[]>();
   data = input.required<any[]>();
   hasAction = input.required<boolean>();
-  viewDetails = output<any>();
+  actionText = input<string>('View Details');
+  action = output<any>();
 
-  onViewDetails(item: any) {
-    this.viewDetails.emit(item);
+  onAction(item: any) {
+    this.action.emit(item);
   }
 }

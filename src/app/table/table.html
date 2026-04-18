@@ -33,7 +33,9 @@
         }
         @if (hasAction()) {
           <td>
-            <button class="action-btn edit" (click)="onViewDetails(item)">View Details</button>
+            <button class="action-btn edit" (click)="onAction(item)">
+              {{ actionText() }}
+            </button>
           </td>
         }
       </tr>

@@ -22,7 +22,9 @@
         [data]="(accountsData$ | async) || []"
         [headers]="accountsTableHeaders"
         [customeHeaders]="accountsTableCustomeHeaders"
-        [hasAction]="false"
+        [hasAction]="true"
+        (action)="onViewTransactions($event)"
+        actionText="View Transactions"
       ></app-table>
     </section>
   </div>

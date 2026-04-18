@@ -1,0 +1,37 @@
+@for (array of cardData() | keyvalue; track $index) {
+  <div class="transaction-card">
+    <div class="transaction-header">
+      @for (headerItem of cardHeaderElements(); track $index) {
+        @for (item of array.value | keyvalue; track $index) {
+          @if (headerItem === item.key) {
+            <span>{{ item.value }}</span>
+          }
+        }
+      }
+    </div>
+    <div class="transaction-body">
+      @for (bodyItem of cardBodyElements(); track $index) {
+        @for (item of array.value | keyvalue; track $index) {
+          @if (item.key === 'amount' && bodyItem === 'amount') {
+            <span class="transaction-amount">{{ item.value | currency: 'EGP' }}</span>
+          } @else if (item.key === 'type' && bodyItem === 'type') {
+            <span class="transaction-type" [ngClass]="item.value.toLowerCase()">
+              {{ item.value }}
+            </span>
+          } @else if (bodyItem === item.key) {
+            <span>{{ item.value }}</span>
+          }
+        }
+      }
+    </div>
+    <div class="transaction-footer">
+      @for (fotterItem of cardFooterElements(); track $index) {
+        @for (item of array.value | keyvalue; track $index) {
+          @if (fotterItem === item.key) {
+            <span>{{ item.value }}</span>
+          }
+        }
+      }
+    </div>
+  </div>
+}
