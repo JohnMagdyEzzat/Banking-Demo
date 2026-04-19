@@ -10,7 +10,7 @@
           <th>{{ header | capitalize }}</th>
         }
       }
-      @if (hasAction()) {
+      @if (hasActions()) {
         <th>Actions</th>
       }
     </tr>
@@ -31,9 +31,13 @@
             <td>{{ item[key] }}</td>
           }
         }
-        @if (hasAction()) {
+        @if (hasActions()) {
           <td>
-            <button class="action-btn edit" (click)="onViewDetails(item)">View Details</button>
+            @for (action of actions(); track $index) {
+              <button class="action-btn edit" (click)="onAction(item, action)">
+                {{ action }}
+              </button>
+            }
           </td>
         }
       </tr>

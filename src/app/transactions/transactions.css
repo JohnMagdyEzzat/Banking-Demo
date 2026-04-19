@@ -1,0 +1,57 @@
+.transactions-body {
+  background-color: #f4f6f9;
+  margin: 0;
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+.transactions-container {
+  max-width: 800px;
+  margin: auto;
+}
+
+.transactions-container h2 {
+  font-size: 1.5rem;
+  color: #2d2d2d;
+}
+
+.back-btn {
+  background: #fff;
+  color: #2d89ef;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.back-btn:hover {
+  background: #e6e6e6;
+}
+
+.transaction-container-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.btn {
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+
+.btn-primary {
+  background: #0078d7;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: #005a9e;
+}

@@ -10,7 +10,7 @@
             [label]="formItem.label"
             [inputType]="formItem.inputType"
             [placeholder]="formItem.placeholder"
-            [validationMessage]="formItem.validationMessage"
+            [validationMessage]="getFormValidationMessage(formItem.formControlName)"
           ></app-form-input>
         }
 

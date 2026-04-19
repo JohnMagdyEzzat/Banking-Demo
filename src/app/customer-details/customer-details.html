@@ -22,8 +22,10 @@
         [data]="(accountsData$ | async) || []"
         [headers]="accountsTableHeaders"
         [customeHeaders]="accountsTableCustomeHeaders"
-        [hasAction]="false"
+        [actions]="actions"
+        (action)="onViewTransactions($event)"
       ></app-table>
     </section>
   </div>
 </div>
+<app-last-ntransaction [isModalOpen]="isModalOpen"></app-last-ntransaction>

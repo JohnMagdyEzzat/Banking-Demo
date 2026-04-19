@@ -28,4 +28,39 @@ export class AccountService {
       map((accounts) => accounts.filter((account) => account.customerId === customerID)),
     );
   }
+
+  getAccountByAccountNumber(accountNumber: string): Observable<IAccount | undefined> {
+    return this.getAllAccounts().pipe(
+      map((accounts) => accounts.find((account) => account.id === accountNumber)),
+    );
+  }
+
+  updateAccounts(updatedAccount: IAccount) {
+    const accounts$ = this.getAllAccounts();
+    return accounts$.pipe(
+      map((accounts) => {
+        return accounts.map((account) => {
+          if (account.id === updatedAccount.id) {
+            account = updatedAccount;
+          }
+          return account;
+        });
+      }),
+      tap((updatedAccounts) => {
+        this.accountsSubject.next(updatedAccounts);
+      }),
+    );
+  }
+
+  updateBalance(accountNumber: string, balance: number) {
+    const account$ = this.getAccountByAccountNumber(accountNumber);
+    return account$.pipe(
+      map((account) => {
+        return { ...account, balance } as IAccount;
+      }),
+      map((newAccount) => {
+        return this.updateAccounts(newAccount);
+      }),
+    );
+  }
 }
