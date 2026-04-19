@@ -40,7 +40,7 @@ export class MonthlyInsights implements OnInit {
         if (!acc[monthKey]) {
           acc[monthKey] = {
             totals: {} as Record<string, number>,
-            highest: { category: '', value: -Infinity },
+            highest: { category: '', value: 0 },
             totalDebit: 0,
             totalCredit: 0,
           };
