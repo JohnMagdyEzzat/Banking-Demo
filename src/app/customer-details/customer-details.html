@@ -28,4 +28,9 @@
     </section>
   </div>
 </div>
-<app-last-ntransaction [isModalOpen]="isModalOpen"></app-last-ntransaction>
+
+<app-last-ntransaction
+  [isModalOpenInput]="isModalOpen"
+  [accountNumber]="accountNumber"
+  (close)="onCloseModal()"
+></app-last-ntransaction>

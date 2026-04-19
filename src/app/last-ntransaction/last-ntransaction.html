@@ -1,10 +1,6 @@
-<!-- Trigger button -->
-<button class="btn-primary" (click)="openModal()">View Last N Transactions</button>
-
-<!-- Modal -->
 @if (isModalOpen()) {
-  <div class="modal-overlay" (click)="closeModal()">
-    <div class="modal-box" (click)="$event.stopPropagation()">
+  <div class="modal-overlay" (mousedown)="closeModal()">
+    <div class="modal-box" (mousedown)="$event.stopPropagation()">
       <h2 class="modal-title">Last N Transactions</h2>
 
       <label for="transactionCount" class="modal-label">Enter number of transactions:</label>

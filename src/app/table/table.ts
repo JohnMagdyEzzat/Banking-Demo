@@ -1,4 +1,4 @@
-import { Component, input, OnInit, output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { CapitalizePipe } from '../common/pipes/capitalize-pipe';
 import { CurrencyPipe, NgClass } from '@angular/common';
 

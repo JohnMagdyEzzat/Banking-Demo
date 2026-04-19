@@ -1,21 +1,50 @@
 <div class="transactions-body">
-  <div class="transactions-container">
-    <div class="transaction-container-header">
-      <h2>Transactions for Account {{ accountNumber }}</h2>
-      <button class="back-btn" (click)="goBack()">← Back</button>
+  @if (isMonthlyPanelOpen) {
+    <app-monthly-insights
+      [transactions]="(selectedTransactions$ | async) || []"
+      (back)="onToggleMonthlyInsights()"
+    ></app-monthly-insights>
+  } @else {
+    <div class="transactions-container">
+      <div class="transaction-container-header">
+        <h2>
+          Transactions for Account {{ accountNumber }}
+          @if ((lastNTransactions$ | async) && (lastNTransactions$ | async)!.length > 0) {
+            <div class="helper-text">
+              Last {{ (lastNTransactions$ | async)?.length }} Transactions
+            </div>
+          }
+        </h2>
+        <button class="back-btn" (click)="goBack()">← Back</button>
+      </div>
+
+      <div class="btn-group">
+        <button class="btn btn-primary" (click)="onCreateNewTransaction()">
+          Create new transaction
+        </button>
+        <button class="btn btn-primary" (click)="onExportTransactions()">Export</button>
+        <button class="btn btn-primary" (click)="onToggleMonthlyInsights()">
+          Monthly Insights
+        </button>
+      </div>
+
+      <app-filters (filterChange)="onFilterChange($event)" (sort)="onSort($event)"></app-filters>
+
+      @if ((lastNTransactions$ | async) && (lastNTransactions$ | async)!.length > 0) {
+        <app-card
+          [cardData]="(filteredLastNTransactions$ | async) || []"
+          [cardHeaderElements]="headerElements"
+          [cardBodyElements]="bodyElements"
+          [cardFooterElements]="footerElements"
+        ></app-card>
+      } @else {
+        <app-card
+          [cardData]="(filteredData$ | async) || []"
+          [cardHeaderElements]="headerElements"
+          [cardBodyElements]="bodyElements"
+          [cardFooterElements]="footerElements"
+        ></app-card>
+      }
     </div>
-
-    <button class="btn btn-primary" (click)="onCreateNewTransaction()">
-      Create new transaction
-    </button>
-
-    <app-filters (filterChange)="onFilterChange($event)" (sort)="onSort($event)"></app-filters>
-
-    <app-card
-      [cardData]="(filteredData$ | async) || []"
-      [cardHeaderElements]="headerElements"
-      [cardBodyElements]="bodyElements"
-      [cardFooterElements]="footerElements"
-    ></app-card>
-  </div>
+  }
 </div>

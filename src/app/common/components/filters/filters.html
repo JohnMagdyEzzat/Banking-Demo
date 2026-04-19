@@ -29,7 +29,8 @@
     <label [formGroup]="sortFormGroup">
       <span class="center">Sort By</span>
       <select id="sortBy" formControlName="sortBy" (change)="onSortBy()">
-        <option value="date" selected>Date</option>
+        <option value="" disabled selected>--</option>
+        <option value="date">Date</option>
         <option value="amount">Amount</option>
       </select>
     </label>

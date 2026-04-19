@@ -1,23 +1,17 @@
-import { Location, NgClass } from '@angular/common';
-import { Component, inject, input, OnInit } from '@angular/core';
+import { NgClass } from '@angular/common';
+import { Component, inject, OnInit } from '@angular/core';
 import {
   ITransaction,
   TRANSACTIONCATEGORIESARRAY,
   TransactionType,
 } from '../interfaces/transactionInterface';
 import { FormInput } from '../common/components/form-input/form-input';
-import {
-  AbstractControl,
-  FormBuilder,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormService } from '../common/services/form-service';
 import { getFormValidationMessage } from '../common/functions/validation-functions';
 import { TransactionCreationValidators } from '../validators/transaction-creation-validators';
 import { AccountService } from '../services/account/account-service';
-import { Observable, switchMap, tap } from 'rxjs';
+import { Observable, switchMap, take, tap } from 'rxjs';
 import { IAccount } from '../interfaces/accountInterface';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IdGeneratorService } from '../common/services/id-generator-service';
@@ -73,6 +67,7 @@ export class CreateTransaction implements OnInit {
     this.account$ = this.accountService.getAccountByAccountNumber(this.accountNumber);
     this.account$
       .pipe(
+        take(1),
         tap((account) => {
           this.accountBalance = account?.balance || 0;
           this.customerID = account?.customerId || '';
@@ -146,13 +141,17 @@ export class CreateTransaction implements OnInit {
       this.transactionService
         .addTransaction(transactionPayload)
         .pipe(
+          take(1),
           tap(() => this.newTransactionForm.reset()),
           tap(() => this.router.navigate([`transactions/${this.accountNumber}`])),
         )
         .subscribe();
       this.accountService
         .updateBalance(this.accountNumber, this.accountBalance)
-        .pipe(switchMap((account) => account))
+        .pipe(
+          take(1),
+          switchMap((account) => account),
+        )
         .subscribe();
     } else {
       this.showTransactionFormValidation();
