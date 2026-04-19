@@ -59,9 +59,7 @@ export class Filters implements OnInit {
       Object.entries(this.filterFormGroup.value).filter((entry) => entry[1] !== ''),
     ) as IFilterItems;
 
-    if (Object.keys(activeFilters).length > 0) {
-      this.filterChange.emit(activeFilters);
-    }
+    this.filterChange.emit(activeFilters);
   }
 
   onSortBy() {

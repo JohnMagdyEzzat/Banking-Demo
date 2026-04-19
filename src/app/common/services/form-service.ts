@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AbstractControl, FormGroup } from '@angular/forms';
-import { IFormItem } from '../interfaces/common-interfaces';
 import {
   loginValidationMessages,
   transactionCreationValidationMessages,

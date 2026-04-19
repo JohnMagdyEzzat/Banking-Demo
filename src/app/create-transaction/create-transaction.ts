@@ -1,18 +1,12 @@
-import { Location, NgClass } from '@angular/common';
-import { Component, inject, input, OnInit } from '@angular/core';
+import { NgClass } from '@angular/common';
+import { Component, inject, OnInit } from '@angular/core';
 import {
   ITransaction,
   TRANSACTIONCATEGORIESARRAY,
   TransactionType,
 } from '../interfaces/transactionInterface';
 import { FormInput } from '../common/components/form-input/form-input';
-import {
-  AbstractControl,
-  FormBuilder,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormService } from '../common/services/form-service';
 import { getFormValidationMessage } from '../common/functions/validation-functions';
 import { TransactionCreationValidators } from '../validators/transaction-creation-validators';
