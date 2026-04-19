@@ -22,16 +22,11 @@ export class TransactionService {
 
   getAllTransactions(): Observable<ITransaction[]> {
     if (!(this.transactionsSubject.value.length > 0)) {
-      return this.http.get<ITransaction[]>(this.transactionsUrl).pipe(
-        tap((transactions) => {
-          if (transactions) {
-            this.transactionsSubject.next(transactions);
-          }
-        }),
-      );
-    } else {
-      return this.transactions$;
+      return this.http
+        .get<ITransaction[]>(this.transactionsUrl)
+        .pipe(tap((transactions) => this.transactionsSubject.next(transactions)));
     }
+    return this.transactions$;
   }
 
   addTransaction(transaction: ITransaction): Observable<ITransaction[]> {
@@ -46,16 +41,16 @@ export class TransactionService {
     );
   }
 
-  getTransactionByID(id: string) {
+  getTransactionsByAccountNumber(accountNumber: string) {
     return this.getAllTransactions().pipe(
       map((transactions) => {
-        return transactions.filter((transaction) => transaction.accountId === id);
+        return transactions.filter((transaction) => transaction.accountId === accountNumber);
       }),
     );
   }
 
   getLastNTrasaction(transactionCount: number, transactionID: string) {
-    return this.getTransactionByID(transactionID).pipe(
+    return this.getTransactionsByAccountNumber(transactionID).pipe(
       map((transactions) => {
         return transactions.sort((t1, t2) => {
           const t1Date = new Date(t1.date).getTime();

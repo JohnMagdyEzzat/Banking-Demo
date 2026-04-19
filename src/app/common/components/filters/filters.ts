@@ -39,7 +39,7 @@ export class Filters implements OnInit {
       category: [''],
     });
     this.sortFormGroup = this.fb.group({
-      sortBy: ['date'],
+      sortBy: [''],
     });
   }
 

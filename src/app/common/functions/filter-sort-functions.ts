@@ -33,10 +33,10 @@ export function sort(data: any, sortValue: string): any {
     data.sort((a: any, b: any) => {
       const dateA = new Date(a[sortValue]);
       const dateB = new Date(b[sortValue]);
-      const diff = dateA.getTime() - dateB.getTime();
+      const diff = dateB.getTime() - dateA.getTime();
       return diff;
     });
   }
 
-  return data.sort((a: any, b: any) => a[sortValue] - b[sortValue]);
+  return data.sort((a: any, b: any) => b[sortValue] - a[sortValue]);
 }

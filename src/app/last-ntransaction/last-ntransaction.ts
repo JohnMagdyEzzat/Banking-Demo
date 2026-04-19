@@ -2,6 +2,7 @@ import { Component, effect, inject, input, output, signal } from '@angular/core'
 import { FormsModule } from '@angular/forms';
 import { TransactionService } from '../services/transaction/transaction-service';
 import { Router } from '@angular/router';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-last-ntransaction',
@@ -34,6 +35,7 @@ export class LastNTransaction {
   fetchTransactions() {
     this.transactionService
       .getLastNTrasaction(this.transactionCount, this.accountNumber())
+      .pipe(take(1))
       .subscribe();
     this.router.navigate([`transactions/${this.accountNumber()}`]);
   }
